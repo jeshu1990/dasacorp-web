@@ -1676,6 +1676,21 @@
         font-size: 1rem;       /* Tamaño legible en móvil pequeño */
     }
 }
+
+/* Estilos para el logo del hero usando la clase actual */
+.hero .logo-img {
+    max-width: 100%;
+    width: 400px;  /* Tamaño grande */
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero .logo-img:hover {
+    animation: none;
+    transform: scale(1.05) rotate(2deg);
+    filter: drop-shadow(0 30px 40px #c49b3f);
+}
 </style>
 </head>
 <body>
@@ -1725,7 +1740,8 @@
         <div class="hero-content-wrapper">
             <!-- LOGO GRANDE A LA IZQUIERDA -->
             <div class="hero-logo" data-aos="fade-right">
-<img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/81f1f342f1f7d8333856297d54442de20722a750/logo-dasacorp.jpeg" alt="DASACORP" class="logo-img">            </div>
+            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/81f1f342f1f7d8333856297d54442de20722a750/logo-dasacorp.jpeg" alt="DASACORP" class="logo-img">            
+            </div>
             
             <!-- TEXTO A LA DERECHA -->
             <div class="hero-text" data-aos="fade-left">
@@ -1919,7 +1935,7 @@
                 <div class="client-card">
                     <div class="client-image">
                         <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Cliente 1">
-                    </div>
+                </div>
                     <div class="client-overlay">
                         <h4>Banco de Crédito</h4>
                         <p>5+ años de confianza</p>
@@ -1943,36 +1959,6 @@
                     <div class="client-overlay">
                         <h4>Supermercados Peruanos</h4>
                         <p>4+ años de confianza</p>
-                    </div>
-                </div>
-                
-                <div class="client-card">
-                    <div class="client-image">
-                        <img src="imagenes/clientes/cliente1.jpeg" alt="Cliente 4">
-                    </div>
-                    <div class="client-overlay">
-                        <h4>Minka Mall</h4>
-                        <p>2+ años de confianza</p>
-                    </div>
-                </div>
-                
-                <div class="client-card">
-                    <div class="client-image">
-                        <img src="imagenes/clientes/cliente2.jpeg" alt="Cliente 5">
-                    </div>
-                    <div class="client-overlay">
-                        <h4>Universidad San Martín</h4>
-                        <p>6+ años de confianza</p>
-                    </div>
-                </div>
-                
-                <div class="client-card">
-                    <div class="client-image">
-                        <img src="imagenes/clientes/cliente3.jpeg" alt="Cliente 6">
-                    </div>
-                    <div class="client-overlay">
-                        <h4>Gobierno Regional</h4>
-                        <p>8+ años de confianza</p>
                     </div>
                 </div>
                 
