@@ -1746,7 +1746,7 @@
             });
         });
 
-        // ===== CONTADOR DE VISITAS PROFESIONAL =====
+        // ===== CONTADOR DE VISITAS GLOBAL (SIN LOCALSTORAGE) =====
         (function() {
             const counterElement = document.getElementById('visitor-count');
             if (!counterElement) return;
@@ -1756,62 +1756,40 @@
             
             async function updateCounter() {
                 try {
-                    // 1. PRIMERO: Intentar con la API externa (más confiable)
+                    // Mostrar "..." mientras carga
+                    counterElement.textContent = '...';
+                    
                     const response = await fetch(`${apiUrl}/hit/jeshu1990/${counterKey}`);
                     
                     if (response.ok) {
                         const data = await response.json();
                         counterElement.textContent = data.value.toLocaleString();
                         
-                        // Guardar copia local por si la API falla después
-                        localStorage.setItem('backup_visit_count', data.value);
-                        console.log('Contador actualizado vía API:', data.value);
-                        return;
+                        // Guardar en sessionStorage solo para recordar último valor
+                        // (esto NO afecta el conteo global)
+                        sessionStorage.setItem('last_global_count', data.value);
+                        
+                        console.log('✅ Visita global registrada. Total:', data.value);
                     } else {
-                        throw new Error('API respondió con error');
+                        throw new Error('Error en API');
                     }
                 } catch (error) {
-                    console.warn('API CountAPI no disponible, usando contador local');
+                    console.warn('⚠️ No se pudo obtener contador global');
                     
-                    // 2. SEGUNDO: Sistema de respaldo local
-                    let localCount = localStorage.getItem('local_visit_count') || 0;
-                    localCount = parseInt(localCount) + 1; // Siempre incrementa
-                    localStorage.setItem('local_visit_count', localCount);
-                    
-                    // Mostrar con formato
-                    counterElement.textContent = localCount.toLocaleString();
-                    
-                    // 3. TERCERO: Intentar sincronizar cuando se restablezca la conexión
-                    if (navigator.onLine) {
-                        // Si estamos online pero la API falló, reintentar en 30 segundos
-                        setTimeout(() => {
-                            fetch(`${apiUrl}/hit/jeshu1990/${counterKey}`)
-                                .then(r => r.json())
-                                .then(data => {
-                                    counterElement.textContent = data.value.toLocaleString();
-                                    localStorage.setItem('backup_visit_count', data.value);
-                                })
-                                .catch(() => {});
-                        }, 30000);
-                    }
+                    // Mostrar último valor conocido si existe
+                    const lastValue = sessionStorage.getItem('last_global_count');
+                    counterElement.textContent = lastValue ? lastValue + '?' : '0';
                 }
             }
             
-            // Ejecutar al cargar la página
+            // Actualizar al cargar
             updateCounter();
             
             // Actualizar cuando el usuario vuelva a la pestaña (opcional)
             document.addEventListener('visibilitychange', function() {
                 if (!document.hidden) {
-                    // Esperar 2 segundos antes de actualizar (no ser agresivo)
-                    setTimeout(updateCounter, 2000);
+                    setTimeout(updateCounter, 1000);
                 }
-            });
-            
-            // Actualizar cuando la conexión a internet se restablezca
-            window.addEventListener('online', function() {
-                console.log('Conexión restablecida, sincronizando contador...');
-                setTimeout(updateCounter, 3000);
             });
         })();
 
