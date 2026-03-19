@@ -7,7 +7,7 @@
     
     <!-- CABECERAS DE SEGURIDAD MEJORADAS -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://raw.githubusercontent.com data:; connect-src 'self' https://api.countapi.xyz; frame-src 'self' https://www.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com https://api.visitorbadge.io 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://raw.githubusercontent.com data:; connect-src 'self' https://api.countapi.xyz https://api.visitorbadge.io; frame-src 'self' https://www.google.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="format-detection" content="telephone=no">
@@ -735,6 +735,22 @@
             opacity: 0.7;
         }
 
+        .team-info {
+            padding: 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .team-info h3 {
+            color: #0a2b4f;
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         /* ===== CONTACTO ===== */
         .contact-info-section {
             background: white;
@@ -1349,6 +1365,7 @@
             </div>
             
             <div class="services-grid">
+                <!-- Servicio 1 -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-truck"></i>
@@ -1362,6 +1379,7 @@
                     </ul>
                 </div>
                 
+                <!-- Servicio 2 -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon">
                         <i class="fas fa-user-shield"></i>
@@ -1375,6 +1393,7 @@
                     </ul>
                 </div>
                 
+                <!-- Servicio 3 -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon">
                         <i class="fas fa-calendar-check"></i>
@@ -1388,6 +1407,7 @@
                     </ul>
                 </div>
                 
+                <!-- Servicio 4 -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon">
                         <i class="fas fa-hard-hat"></i>
@@ -1401,6 +1421,7 @@
                     </ul>
                 </div>
                 
+                <!-- Servicio 5 -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-icon">
                         <i class="fas fa-music"></i>
@@ -1427,6 +1448,7 @@
             
             <div class="clients-slider-container" data-aos="fade-up">
                 <div class="clients-track">
+                    <!-- Grupo 1 - Tus clientes -->
                     <div class="client-card">
                         <div class="client-image">
                             <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" 
@@ -1462,6 +1484,7 @@
                         </div>
                     </div>
                     
+                    <!-- Grupo 2 - Repetido para efecto infinito -->
                     <div class="client-card">
                         <div class="client-image">
                             <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" 
@@ -1511,36 +1534,56 @@
             </div>
             
             <div class="team-grid">
+                <!-- Trabajador 1 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="team-image">
                         <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador1.jpeg" 
                              alt="Trabajador 1"
                              loading="lazy">
-                    </div>                   
+                    </div>
+                    <div class="team-info">
+                        <h3>Juan Pérez</h3>
+                        <p>Jefe de Operaciones</p>                        
+                    </div>
                 </div>
                 
+                <!-- Trabajador 2 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="team-image">
                         <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" 
                              alt="Trabajador 2"
                              loading="lazy">
-                    </div>                   
+                    </div>
+                    <div class="team-info">
+                        <h3>Pepe lucho</h3>
+                        <p>Coordinador de Seguridad</p>
+                    </div>
                 </div>
                 
+                <!-- Trabajador 3 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="team-image">
                         <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador3.jpeg" 
                              alt="Trabajador 3"
                              loading="lazy">
-                    </div>                    
+                    </div>
+                    <div class="team-info">
+                        <h3>Ahijao</h3>
+                        <p>Supervisor de Campo</p>
+                    </div>
                 </div>
                 
+                <!-- Trabajador 4 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="400">
                     <div class="team-image">
                         <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/bc30791b085b26704dc4034ad360b424c6257eb5/trabajador4.jpeg" 
                              alt="Trabajador 4"
                              loading="lazy">
-                    </div>                   
+                    </div>
+                    <div class="team-info">
+                        <h3>Ana Torres</h3>
+                        <p>Especialista en Ciberseguridad</p>                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -1746,51 +1789,26 @@
             });
         });
 
-        // ===== CONTADOR DE VISITAS GLOBAL (SIN LOCALSTORAGE) =====
+        // ===== CONTADOR DE VISITAS SIMPLE Y CONFIABLE =====
         (function() {
             const counterElement = document.getElementById('visitor-count');
             if (!counterElement) return;
             
-            const counterKey = 'dasacorp_web_visits';
-            const apiUrl = 'https://api.countapi.xyz';
+            // Mostrar mensaje de carga
+            counterElement.textContent = 'cargando...';
             
-            async function updateCounter() {
-                try {
-                    // Mostrar "..." mientras carga
-                    counterElement.textContent = '...';
-                    
-                    const response = await fetch(`${apiUrl}/hit/jeshu1990/${counterKey}`);
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        counterElement.textContent = data.value.toLocaleString();
-                        
-                        // Guardar en sessionStorage solo para recordar último valor
-                        // (esto NO afecta el conteo global)
-                        sessionStorage.setItem('last_global_count', data.value);
-                        
-                        console.log('✅ Visita global registrada. Total:', data.value);
-                    } else {
-                        throw new Error('Error en API');
-                    }
-                } catch (error) {
-                    console.warn('⚠️ No se pudo obtener contador global');
-                    
-                    // Mostrar último valor conocido si existe
-                    const lastValue = sessionStorage.getItem('last_global_count');
-                    counterElement.textContent = lastValue ? lastValue + '?' : '0';
-                }
-            }
-            
-            // Actualizar al cargar
-            updateCounter();
-            
-            // Actualizar cuando el usuario vuelva a la pestaña (opcional)
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden) {
-                    setTimeout(updateCounter, 1000);
-                }
-            });
+            // Usar VisitorBadge.io que es más estable que CountAPI
+            fetch('https://api.visitorbadge.io/api/visitors?path=jeshu1990.dasacorp&label=&countColor=%23c49b3f')
+                .then(response => response.json())
+                .then(data => {
+                    // VisitorBadge devuelve el número en data.count
+                    counterElement.textContent = data.count || '0';
+                })
+                .catch(error => {
+                    console.error('Error en contador:', error);
+                    // Si falla, mostrar 0
+                    counterElement.textContent = '0';
+                });
         })();
 
         // Monitoreo de errores
@@ -1807,12 +1825,6 @@
                 });
             });
         });
-
-        // Sanitización básica de inputs (si los hubiera)
-        function sanitizeInput(input) {
-            if (!input) return input;
-            return input.replace(/[<>]/g, '');
-        }
     </script>
 </body>
 </html>
