@@ -5,38 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DASACORP - Seguridad Privada</title>
     
-    <!-- CABECERAS DE SEGURIDAD MEJORADAS -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com https://api.visitorbadge.io 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://raw.githubusercontent.com data:; connect-src 'self' https://api.countapi.xyz https://api.visitorbadge.io; frame-src 'self' https://www.google.com;">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="format-detection" content="telephone=no">
-    
-    <!-- PROTECCIÓN CONTRA CLICKJACKING -->
-    <style>
-        html { display: none; }
-    </style>
-    <script>
-        if (self === top) {
-            document.documentElement.style.display = 'block';
-        } else {
-            top.location = self.location;
-        }
-    </script>
-    
     <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Iconos Font Awesome - VERSIÓN FIJA -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Iconos Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Animate.css - VERSIÓN FIJA -->
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <!-- AOS (Animate on Scroll) - VERSIÓN FIJA -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         /* ===== VARIABLES ===== */
@@ -80,7 +61,6 @@
             text-decoration: none;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
-            border: 2px solid white;
         }
 
         .whatsapp-float:hover {
@@ -171,97 +151,52 @@
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0a2b4f 0%, #051a30 100%);
+            height: 100vh;
+            background: linear-gradient(rgba(10,43,79,0.8), rgba(10,43,79,0.8)), url('imagenes/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%23c49b3f"/></svg>');
-            background-size: 100px;
-            animation: moveBackground 20s linear infinite;
-        }
-
-        @keyframes moveBackground {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .hero-content-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-logo {
-            flex: 1;
-            text-align: center;
-        }
-
-        .hero-logo-img {
-            max-width: 100%;
-            width: 400px;
-            height: auto;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .hero-text {
-            flex: 1.2;
             color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             color: #c49b3f;
-            display: block;
             margin-bottom: 20px;
+            display: block;
         }
 
-        .hero-title {
-            font-size: 3.5rem;
+        .hero h1 {
+            font-size: 4rem;
             font-weight: 800;
+            margin-bottom: 20px;
             line-height: 1.2;
-            margin-bottom: 25px;
         }
 
-        .hero-title span {
+        .hero h1 span {
             color: #c49b3f;
             display: block;
-            font-size: 4rem;
         }
 
-        .hero-description {
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            line-height: 1.8;
-            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.95;
         }
 
         .hero-stats {
             display: flex;
-            gap: 50px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 50px;
         }
 
         .hero-stat {
@@ -270,23 +205,15 @@
 
         .hero-stat h3 {
             font-size: 2.5rem;
-            font-weight: 800;
             color: #c49b3f;
             margin-bottom: 5px;
         }
 
         .hero-stat p {
             font-size: 0.9rem;
+            margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        .hero-logo-img:hover {
-            animation: none;
-            transform: scale(1.05) rotate(5deg);
-            filter: drop-shadow(0 30px 40px #c49b3f);
-            transition: all 0.5s;
+            letter-spacing: 1px;
         }
 
         /* ===== SECCIONES GENERALES ===== */
@@ -354,57 +281,32 @@
         }
 
         .about-image {
-            width: 100%;
+            position: relative;
         }
 
-        .image-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .image-wrapper img {
+        .about-image img {
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transition: all 0.5s;
         }
 
-        .image-wrapper img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 30px 50px rgba(196,155,63,0.3);
-        }
-
-        .image-caption {
+        .about-image-card {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
             background: #0a2b4f;
             color: white;
-            padding: 20px 25px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-left: 5px solid #c49b3f;
-            transition: all 0.5s;
-            text-align: center;
         }
 
-        .image-caption:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(196,155,63,0.3);
-        }
-
-        .image-caption i {
+        .about-image-card i {
             font-size: 2.5rem;
             color: #c49b3f;
-        }
-
-        .image-caption p {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.4;
         }
 
         /* ===== MISIÓN Y VISIÓN ===== */
@@ -541,144 +443,67 @@
             color: #c49b3f;
         }
 
-        /* ===== CLIENTES (CARRUSEL) ===== */
+        /* ===== CLIENTES ===== */
         .clients {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 80px 0;
-            overflow: hidden;
+            background: white;
         }
 
-        .clients-slider-container {
-            width: 100%;
+        .clients-slider {
             overflow: hidden;
-            padding: 20px 0;
             position: relative;
-        }
-
-        .clients-slider-container::before,
-        .clients-slider-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 150px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .clients-slider-container::before {
-            left: 0;
-            background: linear-gradient(to right, #ffffff, transparent);
-        }
-
-        .clients-slider-container::after {
-            right: 0;
-            background: linear-gradient(to left, #ffffff, transparent);
+            padding: 20px 0;
         }
 
         .clients-track {
             display: flex;
-            gap: 30px;
-            animation: scroll 40s linear infinite;
-            width: fit-content;
+            animation: scroll 30s linear infinite;
+            gap: 50px;
         }
 
         .clients-track:hover {
             animation-play-state: paused;
         }
 
+        .client-logo {
+            flex: 0 0 150px;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+
+        .client-logo:hover {
+            transform: scale(1.1);
+            background: #0a2b4f;
+        }
+
+        .client-logo:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .client-logo:hover img {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 15px)); }
+            100% { transform: translateX(-100%); }
         }
 
-        .client-card {
-            flex: 0 0 300px;
-            height: 300px;
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
-        }
-
-        .client-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 45px rgba(196, 155, 63, 0.4);
-        }
-
-        .client-image {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .client-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: brightness(0.95);
-        }
-
-        .client-card:hover .client-image img {
-            transform: scale(1.15);
-            filter: brightness(1.1) saturate(1.3);
-        }
-
-        .client-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(10,43,79,0.98), rgba(10,43,79,0.8), transparent);
-            color: white;
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            backdrop-filter: blur(5px);
-        }
-
-        .client-card:hover .client-overlay {
-            transform: translateY(0);
-        }
-
-        .client-overlay h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #c49b3f;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .client-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.95;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .client-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid transparent;
-            border-radius: 20px;
-            transition: all 0.5s;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .client-card:hover::before {
-            border-color: #c49b3f;
-            box-shadow: inset 0 0 30px rgba(196,155,63,0.5);
-        }
-
-        /* ===== EQUIPO ===== */
+        /* ===== GALERÍA DE TRABAJADORES ===== */
         .team {
             background: #f5f5f5;
         }
@@ -738,6 +563,7 @@
         .team-info {
             padding: 20px;
             text-align: center;
+            position: relative;
             background: white;
         }
 
@@ -751,7 +577,42 @@
             font-size: 0.9rem;
         }
 
-        /* ===== CONTACTO ===== */
+        .team-social {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: all 0.5s;
+            z-index: 2;
+        }
+
+        .team-card:hover .team-social {
+            opacity: 1;
+            bottom: 50%;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background: #c49b3f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            transform: scale(1.1);
+            background: #0a2b4f;
+        }
+
+        /* ===== CONTACTO INFORMATIVO ===== */
         .contact-info-section {
             background: white;
         }
@@ -807,17 +668,6 @@
             width: 100%;
             height: 100%;
             border: 0;
-        }
-
-        /* ===== LOGO STYLES ===== */
-        .logo-img {
-            height: 60px;
-            width: auto;
-            transition: all 0.3s;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
         }
 
         /* ===== FOOTER ===== */
@@ -904,116 +754,15 @@
         }
 
         .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
             padding: 20px 0;
             border-top: 1px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .visitor-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        .visitor-badge i {
-            color: #c49b3f;
-        }
-
-        .visitor-count {
-            color: #c49b3f;
-            font-weight: 600;
-            margin-left: 5px;
-        }
-
-        /* ===== BOTÓN VOLVER ARRIBA ===== */
-        .scroll-top {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: #c49b3f;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            text-decoration: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            border: 2px solid white;
-        }
-
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: #0a2b4f;
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(196,155,63,0.5);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .scroll-top i {
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-top:hover i {
-            animation: none;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1200px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-title span {
-                font-size: 3.5rem;
-            }
-        }
-
         @media (max-width: 992px) {
-            .hero-content-wrapper {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            
-            .hero-logo-img {
-                width: 300px;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .hero-title span {
-                font-size: 3.2rem;
-            }
-            
-            .hero-description {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .hero-stats {
-                justify-content: center;
+            .hero h1 {
+                font-size: 3rem;
             }
             
             .about-grid,
@@ -1022,8 +771,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .image-caption p {
-                font-size: 1.2rem;
+            .about-image-card {
+                left: 20px;
             }
         }
 
@@ -1041,7 +790,6 @@
                 background: #0a2b4f;
                 transition: all 0.3s;
                 z-index: 98;
-                padding: 20px;
             }
             
             .nav-menu.active {
@@ -1050,18 +798,10 @@
             
             .nav-menu ul {
                 flex-direction: column;
-                gap: 20px;
+                padding: 40px;
             }
             
-            .hero-logo-img {
-                width: 250px;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-title span {
+            .hero h1 {
                 font-size: 2.5rem;
             }
             
@@ -1073,264 +813,1008 @@
             .section-title {
                 font-size: 2rem;
             }
-            
-            .logo-img {
-                height: 45px;
-            }
-            
-            .client-card {
-                flex: 0 0 250px;
-                height: 250px;
-            }
-            
-            .clients-slider-container::before,
-            .clients-slider-container::after {
-                width: 80px;
-            }
-            
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .team-image {
-                height: 200px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .map-container {
-                height: 300px;
-            }
-            
-            .whatsapp-float,
-            .scroll-top {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-            
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .scroll-top {
-                bottom: 80px;
-                right: 20px;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
         }
 
-        @media (max-width: 480px) {
-            .hero-logo-img {
-                width: 200px;
-            }
-            
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-title span {
-                font-size: 2rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-stat {
-                flex: 0 0 auto;
-                width: 100%;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .services-grid,
-            .team-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .team-image {
-                height: 250px;
-            }
-            
-            .client-card {
-                flex: 0 0 180px;
-                height: 180px;
-            }
-            
-            .client-overlay h4 {
-                font-size: 0.9rem;
-            }
-            
-            .client-overlay p {
-                font-size: 0.7rem;
-            }
-            
-            .image-caption {
-                padding: 15px;
-            }
-            
-            .image-caption i {
-                font-size: 2rem;
-            }
-            
-            .image-caption p {
-                font-size: 1rem;
-            }
-            
-            .logo-img {
-                height: 35px;
-            }
-        }
+/* Mejora para los logos de clientes */
+.client-logo {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 150px;
+}
 
-        @media (min-width: 1400px) {
-            .container {
-                max-width: 1320px;
-            }
-            
-            .hero-title {
-                font-size: 4.5rem;
-            }
-            
-            .hero-title span {
-                font-size: 5rem;
-            }
-        }
-    </style>
+.client-logo img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    transition: all 0.3s;
+}
+
+.client-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(196,155,63,0.3);
+}
+
+.client-logo:hover img {
+    filter: grayscale(0);
+}
+
+
+/* Estilos para el logo */
+.logo-img {
+    height: 60px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Si usas texto con eslogan */
+.logo-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.logo-text span {
+    color: #c49b3f;
+}
+
+.logo-slogan {
+    font-size: 12px;
+    color: #c49b3f;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Para el footer */
+.footer-logo-img {
+    height: 50px;
+    width: auto;
+    margin-bottom: 10px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s;
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.05);
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px #c49b3f);
+}
+
+.footer-slogan {
+    font-size: 14px;
+    color: #c49b3f;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+
+/* ===== NUEVO HERO CON LOGO GRANDE ===== */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a2b4f 0%, #051a30 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%23c49b3f"/></svg>');
+    background-size: 100px;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.hero-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+/* LOGO GRANDE */
+.hero-logo {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-logo-img {
+    max-width: 100%;
+    width: 400px;  /* Tamaño grande del logo */
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* TEXTO DEL HERO */
+.hero-text {
+    flex: 1.2;
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #c49b3f;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.hero-title span {
+    color: #c49b3f;
+    display: block;
+    font-size: 4rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #c49b3f;
+    margin-bottom: 5px;
+}
+
+.hero-stat p {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Efecto hover en el logo */
+.hero-logo-img:hover {
+    animation: none;
+    transform: scale(1.05) rotate(5deg);
+    filter: drop-shadow(0 30px 40px #c49b3f);
+    transition: all 0.5s;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .hero-logo-img {
+        width: 300px;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-title span {
+        font-size: 3.2rem;
+    }
+    
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-logo-img {
+        width: 250px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-title span {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* ===== CARRUSEL DE CLIENTES ===== */
+.clients {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.clients-slider-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+    position: relative;
+}
+
+.clients-slider-container::before,
+.clients-slider-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.clients-slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.clients-slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+.clients-track {
+    display: flex;
+    gap: 30px;
+    animation: scroll 40s linear infinite;
+    width: fit-content;
+}
+
+.clients-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 15px)); /* La mitad del ancho total */
+    }
+}
+
+.client-card {
+    flex: 0 0 300px; /* Ancho fijo de 300px */
+    height: 300px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+.client-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(196, 155, 63, 0.4);
+}
+
+.client-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.client-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: brightness(0.95);
+}
+
+.client-card:hover .client-image img {
+    transform: scale(1.15);
+    filter: brightness(1.1) saturate(1.3);
+}
+
+.client-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(10,43,79,0.98), rgba(10,43,79,0.8), transparent);
+    color: white;
+    padding: 30px 20px 20px;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(5px);
+}
+
+.client-card:hover .client-overlay {
+    transform: translateY(0);
+}
+
+.client-overlay h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #c49b3f;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.client-overlay p {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Efecto de borde dorado */
+.client-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    transition: all 0.5s;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.client-card:hover::before {
+    border-color: #c49b3f;
+    box-shadow: inset 0 0 30px rgba(196,155,63,0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .client-card {
+        flex: 0 0 250px;
+        height: 250px;
+    }
+    
+    .clients-slider-container::before,
+    .clients-slider-container::after {
+        width: 80px;
+    }
+    
+    .client-overlay h4 {
+        font-size: 1.1rem;
+    }
+    
+    .client-overlay p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-card {
+        flex: 0 0 200px;
+        height: 200px;
+    }
+    
+    .clients-slider-container::before,
+    .clients-slider-container::after {
+        width: 50px;
+    }
+}
+
+/* ===== WHATSAPP FLOTANTE ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;  /* Tamaño aumentado */
+    height: 60px; /* Tamaño aumentado */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    border: 2px solid white;
+}
+
+/* ===== BOTÓN VOLVER ARRIBA ===== */
+.scroll-top {
+    position: fixed;
+    bottom: 100px;  /* Separado del WhatsApp (30px + 60px + 10px) */
+    right: 30px;
+    background: #c49b3f;
+    color: white;
+    width: 60px;    /* MISMO TAMAÑO que WhatsApp */
+    height: 60px;   /* MISMO TAMAÑO que WhatsApp */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;  /* Tamaño del icono ajustado */
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    border: 2px solid white;
+}
+
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: #0a2b4f;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 15px 30px rgba(196,155,63,0.5);
+}
+
+/* Animación para el botón volver arriba */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.scroll-top i {
+    animation: bounce 2s infinite;
+}
+
+.scroll-top:hover i {
+    animation: none;
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .scroll-top {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 80px;  /* 20px + 50px + 10px de separación */
+        right: 20px;
+    }
+}
+
+
+/* ===== MEJORAS ESPECÍFICAS PARA CELULAR ===== */
+@media (max-width: 768px) {
+    
+    /* Header más compacto */
+    .header {
+        padding: 10px 0;
+    }
+    
+    .logo-img {
+        height: 40px;  /* Logo más pequeño en celular */
+    }
+    
+    /* Hero section ajustado */
+    .hero {
+        min-height: auto;
+        padding: 60px 0;
+        text-align: center;
+    }
+    
+    .hero-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .hero-logo-img {
+        width: 200px;  /* Logo más pequeño en celular */
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-title span {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .hero-stat {
+        flex: 0 0 100px;
+    }
+    
+    .hero-stat h3 {
+        font-size: 1.8rem;
+    }
+    
+    /* Secciones con menos padding */
+    section {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    /* Grids más simples */
+    .about-grid,
+    .mv-grid,
+    .contact-wrapper {
+        gap: 30px;
+    }
+    
+    .about-image-card {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: 20px;
+        padding: 20px;
+    }
+    
+    /* Tarjetas de servicios */
+    .service-card {
+        padding: 30px 20px;
+    }
+    
+    /* Carrusel de clientes */
+    .clients-track {
+        gap: 15px;
+    }
+    
+    .client-card {
+        flex: 0 0 220px;
+        height: 220px;
+    }
+    
+    /* Equipo */
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .team-image {
+        height: 200px;
+    }
+    
+    .team-info {
+        padding: 15px;
+    }
+    
+    .team-info h3 {
+        font-size: 1rem;
+    }
+    
+    /* Contacto */
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .contact-card {
+        padding: 20px;
+    }
+    
+    .contact-card i {
+        font-size: 2rem;
+    }
+    
+    .contact-card h3 {
+        font-size: 1rem;
+    }
+    
+    .contact-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Mapa */
+    .map-container {
+        height: 300px;
+    }
+    
+    /* Footer */
+    .footer-grid {
+        gap: 30px;
+    }
+    
+    .footer-col h4 {
+        font-size: 1.1rem;
+    }
+    
+    /* Botones flotantes */
+    .whatsapp-float,
+    .scroll-top {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .scroll-top {
+        bottom: 80px;
+        right: 20px;
+    }
+}
+
+/* Celulares muy pequeños */
+@media (max-width: 480px) {
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-title span {
+        font-size: 2rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-stat {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;  /* Una columna en celular muy pequeño */
+    }
+    
+    .team-image {
+        height: 250px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;  /* Una columna */
+    }
+    
+    .client-card {
+        flex: 0 0 180px;
+        height: 180px;
+    }
+    
+    .client-overlay h4 {
+        font-size: 0.9rem;
+    }
+    
+    .client-overlay p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Ajuste para pantallas muy grandes */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    
+    .hero-title span {
+        font-size: 5rem;
+    }
+}
+
+/* ===== NUEVO DISEÑO PARA LA IMAGEN CON TEXTO DEBAJO ===== */
+.about-image {
+    width: 100%;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image-wrapper img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.5s;
+}
+
+.image-wrapper img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 30px 50px rgba(196,155,63,0.3);
+}
+
+.image-caption {
+    background: #0a2b4f;
+    color: white;
+    padding: 20px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* CENTRA HORIZONTALMENTE */
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-left: 5px solid #c49b3f;
+    transition: all 0.5s;
+    text-align: center;        /* CENTRA EL TEXTO */
+}
+
+.image-caption:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(196,155,63,0.3);
+}
+
+.image-caption i {
+    font-size: 2.5rem;
+    color: #c49b3f;
+}
+
+.image-caption p {
+    font-size: 1.3rem;        /* TAMAÑO MEDIANO */
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Responsive para tablet */
+@media (max-width: 992px) {
+    .image-caption {
+        padding: 18px 22px;
+    }
+    
+    .image-caption i {
+        font-size: 2.2rem;
+    }
+    
+    .image-caption p {
+        font-size: 1.2rem;    /* Un poco más pequeño en tablet */
+    }
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .image-caption {
+        padding: 15px 20px;
+        flex-direction: row;    /* Mantiene icono y texto en fila */
+        gap: 12px;
+    }
+    
+    .image-caption i {
+        font-size: 2rem;
+    }
+    
+    .image-caption p {
+        font-size: 1.1rem;     /* Tamaño mediano en móvil */
+    }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 480px) {
+    .image-caption {
+        padding: 12px 15px;
+    }
+    
+    .image-caption i {
+        font-size: 1.8rem;
+    }
+    
+    .image-caption p {
+        font-size: 1rem;       /* Tamaño legible en móvil pequeño */
+    }
+}
+
+/* Estilos para el logo del hero usando la clase actual */
+.hero .logo-img {
+    max-width: 100%;
+    width: 400px;  /* Tamaño grande */
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero .logo-img:hover {
+    animation: none;
+    transform: scale(1.05) rotate(2deg);
+    filter: drop-shadow(0 30px 40px #c49b3f);
+}
+</style>
 </head>
 <body>
     <!-- WHATSAPP FLOTANTE -->
     <a href="https://wa.me/51951127351?text=Hola%20DASACORP,%20necesito%20información%20sobre%20sus%20servicios" 
        class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer">
+       target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- HEADER -->
-    <header class="header" id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/6e36bbeddd191496f7dec85b6c96ceab9bc49f47/logo-final.png" 
-                         alt="DASACORP" 
-                         class="logo-img"
-                         loading="lazy">
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <!-- Si tienes imagen del logo -->
+<img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/6e36bbeddd191496f7dec85b6c96ceab9bc49f47/logo-final.png" 
+     alt="DASACORP" 
+     class="logo-img">                
+                <!-- O si prefieres solo texto con eslogan:
+                <div>
+                    <div class="logo-text">DASA<span>CORP</span></div>
+                    <div class="logo-slogan">TU PROTECCIÓN EN BUENAS MANOS</div>
                 </div>
-                
-                <nav class="nav-menu" id="navMenu">
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#clientes">Clientes</a></li>
-                        <li><a href="#equipo">Equipo</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
+                -->
+            </div>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#clientes">Clientes</a></li>
+                    <li><a href="#equipo">Equipo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- HERO SECTION -->
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content-wrapper">
-                <div class="hero-logo" data-aos="fade-right">
-                    <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/8627764e6d131a92c92ac25a7e1e33500270843c/logo-final.png" 
-                         alt="DASACORP" 
-                         class="hero-logo-img"
-                         loading="lazy">
-                </div>
+ <!-- HERO SECTION CON LOGO GRANDE AL COSTADO -->
+<section id="inicio" class="hero">
+    <div class="container">
+        <div class="hero-content-wrapper">
+            <!-- LOGO GRANDE A LA IZQUIERDA -->
+            <div class="hero-logo" data-aos="fade-right">
+            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/8627764e6d131a92c92ac25a7e1e33500270843c/logo-final.png" alt="DASACORP" class="hero-logo-img">            </div>
+            
+            <!-- TEXTO A LA DERECHA -->
+            <div class="hero-text" data-aos="fade-left">
+                <span class="hero-subtitle">DASACORP</span>
+                <h1 class="hero-title">TU PROTECCIÓN EN <span>BUENAS MANOS</span></h1>
+                <p class="hero-description">Protegemos tu integridad física, patrimonial y digital con soluciones personalizadas y de vanguardia.</p>
                 
-                <div class="hero-text" data-aos="fade-left">
-                    <span class="hero-subtitle">DASACORP</span>
-                    <h1 class="hero-title">TU PROTECCIÓN EN <span>BUENAS MANOS</span></h1>
-                    <p class="hero-description">Protegemos tu integridad física, patrimonial y digital con soluciones personalizadas y de vanguardia.</p>
-                    
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <h3>+120</h3>
-                            <p>CLIENTES</p>
-                        </div>
-                        <div class="hero-stat">
-                            <h3>6+</h3>
-                            <p>AÑOS</p>
-                        </div>
-                        <div class="hero-stat">
-                            <h3>24/7</h3>
-                            <p>COBERTURA</p>
-                        </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <h3>+120</h3>
+                        <p>CLIENTES</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>6+</h3>
+                        <p>AÑOS</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>24/7</h3>
+                        <p>COBERTURA</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section> 
 
-    <!-- SOBRE NOSOTROS -->
-    <section id="nosotros" class="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content" data-aos="fade-right">
-                    <span class="section-subtitle">¿QUIÉNES SOMOS?</span>
-                    <h2 class="section-title">DASACORP</h2>
-                    <p class="about-text">
-                        DASACORP es una empresa que brinda servicios de seguridad privada a empresas públicas y privadas, 
-                        entidades financieras y todo tipo de eventos. Nos distinguimos por nuestro compromiso con la 
-                        excelencia, el respeto y la ética profesional.
-                    </p>
-                    
-                    <div class="about-features">
-                        <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Personal altamente capacitado</span>
-                        </div>
-                        <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Tecnología de vanguardia</span>
-                        </div>
-                        <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Certificaciones internacionales</span>
-                        </div>
-                        <div class="about-feature" data-aos="fade-up" data-aos-delay="400">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Atención personalizada</span>
-                        </div>
+ <!-- SOBRE NOSOTROS -->
+<section id="nosotros" class="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content" data-aos="fade-right">
+                <span class="section-subtitle">¿QUIÉNES SOMOS?</span>
+                <h2 class="section-title">DASACORP</h2>
+                <p class="about-text">
+                    DASACORP es una empresa que brinda servicios de seguridad privada a empresas públicas y privadas, 
+                    entidades financieras y todo tipo de eventos. Nos distinguimos por nuestro compromiso con la 
+                    excelencia, el respeto y la ética profesional.
+                </p>
+                
+                <div class="about-features">
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Personal altamente capacitado</span>
+                    </div>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Tecnología de vanguardia</span>
+                    </div>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Certificaciones internacionales</span>
+                    </div>
+                    <div class="about-feature" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Atención personalizada</span>
                     </div>
                 </div>
-                
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/equipo-principal.jpg" 
-                             alt="Equipo DASACORP"
-                             loading="lazy">
-                        <div class="image-caption">
-                            <i class="fas fa-shield-alt"></i>
-                            <p>Comprometidos con tu seguridad</p>
-                        </div>
+            </div>
+            
+            <div class="about-image" data-aos="fade-left">
+                <div class="image-wrapper">
+                    <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/equipo-principal.jpg" alt="Equipo DASACORP">
+                    <!-- TEXTO DEBAJO DE LA IMAGEN -->
+                    <div class="image-caption">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Comprometidos con tu seguridad</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>   
 
     <!-- MISIÓN Y VISIÓN -->
     <section class="mission-vision">
@@ -1438,93 +1922,83 @@
         </div>
     </section>
 
-    <!-- CLIENTES -->
-    <section id="clientes" class="clients">
-        <div class="container">
-            <div class="section-header" data-aos="fade-down">
-                <span class="section-subtitle">CONFÍAN EN NOSOTROS</span>
-                <h2 class="section-title">NUESTROS <span>CLIENTES</span></h2>
-            </div>
-            
-            <div class="clients-slider-container" data-aos="fade-up">
-                <div class="clients-track">
-                    <!-- Grupo 1 - Tus clientes -->
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" 
-                                 alt="Cliente 1"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>Guaros</h4>
-                            <p>Group sac</p>
-                        </div>
+<!-- CLIENTES - CARRUSEL CON TARJETAS GRANDES -->
+<section id="clientes" class="clients">
+    <div class="container">
+        <div class="section-header" data-aos="fade-down">
+            <span class="section-subtitle">CONFÍAN EN NOSOTROS</span>
+            <h2 class="section-title">NUESTROS <span>CLIENTES</span></h2>
+        </div>
+        
+        <div class="clients-slider-container" data-aos="fade-up">
+            <div class="clients-track">
+                <!-- Grupo 1 - Tus clientes -->
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Cliente 1">
+                </div>
+                    <div class="client-overlay">
+                        <h4>Guaros</h4>
+                        <p>Group sac</p>
                     </div>
-                    
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" 
-                                 alt="Cliente 2"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>Epropel Selva</h4>
-                            <p>Venta de implementos de seguridad industrial</p>
-                        </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Cliente 2">
                     </div>
-                    
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" 
-                                 alt="Cliente 3"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>El amigo alfa</h4>    
-                        </div>
+                    <div class="client-overlay">
+                        <h4>Epropel Selva</h4>
+                        <p>Venta de implementos de</p>
+                        <p>seguridad industrial</p>
                     </div>
-                    
-                    <!-- Grupo 2 - Repetido para efecto infinito -->
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" 
-                                 alt="Cliente 1"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>Guaros</h4>
-                            <p>Group Sac</p>
-                        </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="Cliente 3">
                     </div>
-                    
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" 
-                                 alt="Cliente 2"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>Epropel Selva</h4>
-                            <p>Venta de implementos de seguridad industrial</p>
-                        </div>
+                    <div class="client-overlay">
+                        <h4>El amigo alfa</h4>    
                     </div>
-                    
-                    <div class="client-card">
-                        <div class="client-image">
-                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" 
-                                 alt="Cliente 3"
-                                 loading="lazy">
-                        </div>
-                        <div class="client-overlay">
-                            <h4>El amigo Alfa</h4>                        
-                        </div>
+                </div>
+                
+                <!-- Grupo 2 - Repetido para efecto infinito -->
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Cliente 1">
+                    </div>
+                    <div class="client-overlay">
+                        <h4>Guaros</h4>
+                        <p>Group Sac</p>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Cliente 2">
+                    </div>
+                    <div class="client-overlay">
+                        <h4>Epropel Selva</h4>
+                        <p>Venta de implementos de</p>
+                        <p>seguridad industrial</p>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="Cliente 3">
+                    </div>
+                    <div class="client-overlay">
+                        <h4>El amigo Alfa</h4>                        
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- EQUIPO -->
+    <!-- EQUIPO DE TRABAJADORES -->
     <section id="equipo" class="team">
         <div class="container">
             <div class="section-header" data-aos="fade-down">
@@ -1537,59 +2011,34 @@
                 <!-- Trabajador 1 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="100">
                     <div class="team-image">
-                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador1.jpeg" 
-                             alt="Trabajador 1"
-                             loading="lazy">
-                    </div>
-                    <div class="team-info">
-                        <h3>Juan Pérez</h3>
-                        <p>Jefe de Operaciones</p>                        
-                    </div>
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador1.jpeg" alt="Trabajador 1">
+                    </div>                   
                 </div>
                 
                 <!-- Trabajador 2 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="200">
                     <div class="team-image">
-                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" 
-                             alt="Trabajador 2"
-                             loading="lazy">
-                    </div>
-                    <div class="team-info">
-                        <h3>Pepe lucho</h3>
-                        <p>Coordinador de Seguridad</p>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" alt="Trabajador 2">
+                    </div>                   
                 </div>
                 
                 <!-- Trabajador 3 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="300">
                     <div class="team-image">
-                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador3.jpeg" 
-                             alt="Trabajador 3"
-                             loading="lazy">
-                    </div>
-                    <div class="team-info">
-                        <h3>Ahijao</h3>
-                        <p>Supervisor de Campo</p>
-                    </div>
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador3.jpeg" alt="Trabajador 3">
+                    </div>                    
                 </div>
                 
                 <!-- Trabajador 4 -->
                 <div class="team-card" data-aos="flip-left" data-aos-delay="400">
                     <div class="team-image">
-                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/bc30791b085b26704dc4034ad360b424c6257eb5/trabajador4.jpeg" 
-                             alt="Trabajador 4"
-                             loading="lazy">
-                    </div>
-                    <div class="team-info">
-                        <h3>Ana Torres</h3>
-                        <p>Especialista en Ciberseguridad</p>                        
-                    </div>
+                <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/bc30791b085b26704dc4034ad360b424c6257eb5/trabajador4.jpeg" alt="Trabajador 4">                    </div>                   
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACTO -->
+    <!-- CONTACTO INFORMATIVO -->
     <section id="contacto" class="contact-info-section">
         <div class="container">
             <div class="section-header" data-aos="fade-down">
@@ -1624,19 +2073,15 @@
                 </div>
             </div>
             
-            <!-- MAPA -->
-            <div class="map-container" data-aos="fade-up" data-aos-delay="500">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d-76.369298!3d-6.498932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjknNTYuMiJTIDc2wrAyMicxOS41Ilc!5e1!3m2!1ses!2spe!4v1710000000000!5m2!1ses!2spe" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy"
-                        title="Ubicación de DASACORP">
-                </iframe>
-            </div>
-        </div>
-    </section>
+<!-- MAPA - DASACORP UBICACIÓN EXACTA -->
+<div class="map-container" data-aos="fade-up" data-aos-delay="500">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d-76.369298!3d-6.498932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjknNTYuMiJTIDc2wrAyMicxOS41Ilc!5e1!3m2!1ses!2spe!4v1710000000000!5m2!1ses!2spe"             width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+    </iframe>
+</div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -1646,9 +2091,9 @@
                     <div class="footer-logo">DASA<span>CORP</span></div>
                     <p>Protegiendo lo que más valoras con profesionalismo, ética y tecnología de vanguardia.</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -1683,26 +2128,26 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2026 DASACORP. Todos los derechos reservados.</p>
-                <div class="visitor-badge">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Sitio seguro</span>
-                    <span style="color: #c49b3f;">|</span>
-                    <i class="fas fa-eye"></i>
-                    <span>Visitas: <span id="visitor-count" class="visitor-count">0</span></span>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- BOTÓN VOLVER ARRIBA -->
-    <a href="#" class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+        <!-- BOTÓN VOLVER ARRIBA - OPCIÓN 1 -->
+    <a href="#" class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicializar AOS
+        // Aquí va tu JavaScript existente
+    </script>
+</body>
+</html>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animate on Scroll)
         AOS.init({
             duration: 1000,
             once: true,
@@ -1727,10 +2172,8 @@
             menuToggle.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
                 const icon = this.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
-                }
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             });
         }
 
@@ -1738,11 +2181,9 @@
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                const icon = menuToggle?.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
+                const icon = menuToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
             });
         });
 
@@ -1770,61 +2211,24 @@
             });
         });
 
-        // Botón volver arriba
-        const scrollTop = document.getElementById('scrollTop');
+    // ===== BOTÓN VOLVER ARRIBA =====
+const scrollTop = document.getElementById('scrollTop');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('show');
-            } else {
-                scrollTop.classList.remove('show');
-            }
-        });
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {  // Aparece después de bajar 500px
+        scrollTop.classList.add('show');
+    } else {
+        scrollTop.classList.remove('show');
+    }
+});
 
-        scrollTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // ===== CONTADOR DE VISITAS SIMPLE Y CONFIABLE =====
-        (function() {
-            const counterElement = document.getElementById('visitor-count');
-            if (!counterElement) return;
-            
-            // Mostrar mensaje de carga
-            counterElement.textContent = 'cargando...';
-            
-            // Usar VisitorBadge.io que es más estable que CountAPI
-            fetch('https://api.visitorbadge.io/api/visitors?path=jeshu1990.dasacorp&label=&countColor=%23c49b3f')
-                .then(response => response.json())
-                .then(data => {
-                    // VisitorBadge devuelve el número en data.count
-                    counterElement.textContent = data.count || '0';
-                })
-                .catch(error => {
-                    console.error('Error en contador:', error);
-                    // Si falla, mostrar 0
-                    counterElement.textContent = '0';
-                });
-        })();
-
-        // Monitoreo de errores
-        window.addEventListener('error', function(e) {
-            console.log('Error en página:', e.message);
-        });
-
-        // Verificar carga de imágenes
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    console.warn('Imagen no cargada:', this.src);
-                });
-            });
-        });
+scrollTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'  // Scroll suave
+    });
+});
     </script>
 </body>
 </html>
