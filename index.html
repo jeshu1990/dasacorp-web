@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>DASACORP - Seguridad Privada</title>
     
-    <!-- CABECERAS DE SEGURIDAD AGREGADAS -->
+    <!-- CABECERAS DE SEGURIDAD -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://raw.githubusercontent.com data:; connect-src 'self' https://api.visitorbadge.io; frame-src 'self' https://www.google.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -30,8 +30,22 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* ===== TU CÓDIGO CSS ORIGINAL COMPLETO ===== */
-        /* Mantengo TODO tu CSS exactamente como lo tenías */
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #0a2b4f;
+            --primary-dark: #051a30;
+            --accent: #c49b3f;
+            --accent-light: #dbb168;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray: #666;
+            --dark: #333;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(196,155,63,0.3);
+            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --transition-fast: all 0.2s ease-out;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -40,9 +54,15 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #333;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .container {
@@ -50,6 +70,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* ===== EFECTO DE APARICIÓN EN SECCIONES ===== */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ===== WHATSAPP FLOTANTE ===== */
@@ -86,9 +118,56 @@
             100% { transform: scale(1); }
         }
 
+        /* ===== BOTÓN VOLVER ARRIBA ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            border: 2px solid white;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(196,155,63,0.5);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .scroll-top i {
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-top:hover i {
+            animation: none;
+        }
+
         /* ===== HEADER ===== */
         .header {
-            background: #0a2b4f;
+            background: var(--primary);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -116,7 +195,7 @@
         .logo-img {
             height: 60px;
             width: auto;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .logo-img:hover {
@@ -144,7 +223,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #c49b3f;
+            background: var(--accent);
             transition: width 0.3s;
         }
 
@@ -163,7 +242,7 @@
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0a2b4f 0%, #051a30 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             display: flex;
             align-items: center;
             position: relative;
@@ -206,6 +285,13 @@
             height: auto;
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
             animation: float 6s ease-in-out infinite;
+            transition: var(--transition);
+        }
+
+        .hero-logo-img:hover {
+            animation: none;
+            transform: scale(1.05) rotate(3deg);
+            filter: drop-shadow(0 30px 40px var(--accent));
         }
 
         @keyframes float {
@@ -223,7 +309,7 @@
             font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: #c49b3f;
+            color: var(--accent);
             display: block;
             margin-bottom: 20px;
         }
@@ -236,9 +322,13 @@
         }
 
         .hero-title span {
-            color: #c49b3f;
+            color: var(--accent);
             display: block;
             font-size: 4rem;
+            background: linear-gradient(45deg, var(--accent), #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero-description {
@@ -262,7 +352,7 @@
         .hero-stat h3 {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #c49b3f;
+            color: var(--accent);
             margin-bottom: 5px;
         }
 
@@ -271,13 +361,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             opacity: 0.8;
-        }
-
-        .hero-logo-img:hover {
-            animation: none;
-            transform: scale(1.05) rotate(5deg);
-            filter: drop-shadow(0 30px 40px #c49b3f);
-            transition: all 0.5s;
         }
 
         /* ===== SECCIONES GENERALES ===== */
@@ -292,7 +375,7 @@
         }
 
         .section-subtitle {
-            color: #c49b3f;
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 600;
@@ -304,12 +387,15 @@
         .section-title {
             font-size: 2.8rem;
             font-weight: 800;
-            color: #0a2b4f;
+            color: var(--primary);
             margin-bottom: 20px;
         }
 
         .section-title span {
-            color: #c49b3f;
+            background: linear-gradient(45deg, var(--accent), #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         /* ===== SOBRE NOSOTROS ===== */
@@ -322,7 +408,7 @@
 
         .about-text {
             font-size: 1.1rem;
-            color: #666;
+            color: var(--gray);
             margin-bottom: 30px;
         }
 
@@ -340,59 +426,156 @@
         }
 
         .about-feature i {
-            color: #c49b3f;
+            color: var(--accent);
             font-size: 1.2rem;
         }
 
-        .about-image {
-            width: 100%;
-        }
-
-        .image-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .image-wrapper img {
-            width: 100%;
+        /* ===== MARCO DORADO PARA TODAS LAS IMÁGENES ===== */
+        .gold-frame {
+            position: relative;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transition: all 0.5s;
+            overflow: hidden;
+            transition: var(--transition-fast);
         }
 
-        .image-wrapper img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 30px 50px rgba(196,155,63,0.3);
+        .gold-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #c49b3f, #ffd966, #c49b3f, #b8860b);
+            background-size: 300% 300%;
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            animation: borderGlow 3s ease infinite;
+        }
+
+        .gold-frame:hover::before {
+            opacity: 1;
+        }
+
+        .gold-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 20px;
+            transition: transform 0.25s ease;
+        }
+
+        .gold-frame:hover img {
+            transform: scale(1.03);
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== EFECTO GLASS PARA IMAGEN PRINCIPAL ===== */
+        .about-image {
+            position: relative;
+        }
+
+        .image-frame-glass {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: var(--transition);
+        }
+
+        .image-frame-glass:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 50px rgba(196,155,63,0.4);
+        }
+
+        .image-frame-glass img {
+            width: 100%;
+            display: block;
+            transition: transform 0.25s ease;
+        }
+
+        .image-frame-glass:hover img {
+            transform: scale(1.05);
+        }
+
+        .glass-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: linear-gradient(to top, rgba(196,155,63,0.85), rgba(196,155,63,0.3), transparent);
+            transition: height 0.3s ease;
+            pointer-events: none;
+        }
+
+        .image-frame-glass:hover .glass-overlay {
+            height: 60%;
+        }
+
+        .glass-badge {
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background: linear-gradient(135deg, #c49b3f, #ffd966);
+            padding: 8px 20px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0a2b4f;
+            box-shadow: 0 5px 15px rgba(196,155,63,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        .glass-badge i {
+            font-size: 1rem;
+            color: #0a2b4f;
+        }
+
+        .image-frame-glass:hover .glass-badge {
+            right: 20px;
+            opacity: 1;
         }
 
         .image-caption {
-            background: #0a2b4f;
+            background: var(--primary);
             color: white;
-            padding: 20px 25px;
+            padding: 18px 25px;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-left: 5px solid #c49b3f;
-            transition: all 0.5s;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent);
+            transition: var(--transition);
+            margin-top: 25px;
             text-align: center;
         }
 
         .image-caption:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(196,155,63,0.3);
+            box-shadow: var(--shadow-hover);
         }
 
         .image-caption i {
-            font-size: 2.5rem;
-            color: #c49b3f;
+            font-size: 2rem;
+            color: var(--accent);
         }
 
         .image-caption p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin: 0;
             line-height: 1.4;
@@ -400,7 +583,7 @@
 
         /* ===== MISIÓN Y VISIÓN ===== */
         .mission-vision {
-            background: linear-gradient(135deg, #0a2b4f 0%, #051a30 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
         }
 
@@ -426,7 +609,7 @@
         .mv-icon {
             width: 80px;
             height: 80px;
-            background: #c49b3f;
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -436,7 +619,7 @@
 
         .mv-icon i {
             font-size: 2.5rem;
-            color: #0a2b4f;
+            color: var(--primary);
         }
 
         .mv-card h3 {
@@ -446,7 +629,7 @@
 
         /* ===== SERVICIOS ===== */
         .services {
-            background: #f9f9f9;
+            background: var(--gray-light);
         }
 
         .services-grid {
@@ -459,8 +642,8 @@
             background: white;
             padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.5s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
@@ -472,7 +655,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #c49b3f;
+            background: var(--accent);
             transform: scaleX(0);
             transition: transform 0.5s;
             transform-origin: left;
@@ -490,17 +673,17 @@
         .service-icon {
             width: 70px;
             height: 70px;
-            background: #0a2b4f;
+            background: var(--primary);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 25px;
-            transition: all 0.5s;
+            transition: var(--transition);
         }
 
         .service-card:hover .service-icon {
-            background: #c49b3f;
+            background: var(--accent);
             transform: rotateY(360deg);
         }
 
@@ -511,7 +694,7 @@
 
         .service-card h3 {
             font-size: 1.4rem;
-            color: #0a2b4f;
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
@@ -525,14 +708,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #666;
+            color: var(--gray);
         }
 
         .service-features i {
-            color: #c49b3f;
+            color: var(--accent);
         }
 
-        /* ===== CLIENTES CARRUSEL ===== */
+        /* ===== CLIENTES - NUEVO DISEÑO CON NOMBRE DEBAJO ===== */
         .clients {
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             padding: 80px 0;
@@ -570,7 +753,7 @@
         .clients-track {
             display: flex;
             gap: 30px;
-            animation: scroll 40s linear infinite;
+            animation: scroll 35s linear infinite;
             width: fit-content;
         }
 
@@ -584,24 +767,23 @@
         }
 
         .client-card {
-            flex: 0 0 300px;
-            height: 300px;
-            position: relative;
+            flex: 0 0 280px;
+            background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: var(--shadow);
+            transition: var(--transition-fast);
             cursor: pointer;
         }
 
         .client-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 45px rgba(196, 155, 63, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(196,155,63,0.35);
         }
 
         .client-image {
             width: 100%;
-            height: 100%;
+            height: 250px;
             overflow: hidden;
         }
 
@@ -609,74 +791,40 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: brightness(0.95);
+            transition: transform 0.25s ease;
         }
 
         .client-card:hover .client-image img {
-            transform: scale(1.15);
-            filter: brightness(1.1) saturate(1.3);
+            transform: scale(1.08);
         }
 
-        .client-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(10,43,79,0.98), rgba(10,43,79,0.8), transparent);
-            color: white;
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            backdrop-filter: blur(5px);
+        .client-info {
+            padding: 18px 15px 20px;
+            text-align: center;
+            background: white;
         }
 
-        .client-card:hover .client-overlay {
-            transform: translateY(0);
-        }
-
-        .client-overlay h4 {
-            font-size: 1.3rem;
+        .client-info h4 {
+            font-size: 1.2rem;
             font-weight: 700;
+            color: var(--primary);
             margin-bottom: 5px;
-            color: #c49b3f;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .client-overlay p {
-            font-size: 0.95rem;
-            opacity: 0.95;
+        .client-info p {
+            font-size: 0.85rem;
+            color: var(--gray);
             margin: 0;
-            font-weight: 500;
-        }
-
-        .client-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid transparent;
-            border-radius: 20px;
-            transition: all 0.5s;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .client-card:hover::before {
-            border-color: #c49b3f;
-            box-shadow: inset 0 0 30px rgba(196,155,63,0.5);
         }
 
         /* ===== EQUIPO ===== */
         .team {
-            background: #f5f5f5;
+            background: var(--gray-light);
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -684,13 +832,13 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.5s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .team-card:hover {
-            transform: translateY(-20px) scale(1.05);
-            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 45px rgba(196,155,63,0.3);
         }
 
         .team-image {
@@ -703,11 +851,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.25s ease;
         }
 
         .team-card:hover .team-image img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .team-info {
@@ -717,13 +865,15 @@
         }
 
         .team-info h3 {
-            color: #0a2b4f;
+            font-size: 1.2rem;
+            color: var(--primary);
             margin-bottom: 5px;
         }
 
         .team-info p {
-            color: #666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin: 0;
         }
 
         /* ===== CONTACTO ===== */
@@ -739,33 +889,33 @@
         }
 
         .contact-card {
-            background: #f9f9f9;
+            background: var(--gray-light);
             padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
-            transition: all 0.5s;
+            transition: var(--transition);
             border: 1px solid transparent;
         }
 
         .contact-card:hover {
-            transform: translateY(-20px);
-            border-color: #c49b3f;
+            transform: translateY(-15px);
+            border-color: var(--accent);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .contact-card i {
             font-size: 2.5rem;
-            color: #c49b3f;
+            color: var(--accent);
             margin-bottom: 20px;
         }
 
         .contact-card h3 {
-            color: #0a2b4f;
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
         .contact-card p {
-            color: #666;
+            color: var(--gray);
             line-height: 1.8;
         }
 
@@ -786,7 +936,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            background: #0a2b4f;
+            background: var(--primary);
             color: white;
             padding-top: 80px;
         }
@@ -805,7 +955,7 @@
         }
 
         .footer-logo span {
-            color: #c49b3f;
+            color: var(--accent);
         }
 
         .footer-col h4 {
@@ -821,7 +971,7 @@
             left: 0;
             width: 50px;
             height: 2px;
-            background: #c49b3f;
+            background: var(--accent);
         }
 
         .footer-col ul {
@@ -839,7 +989,7 @@
         }
 
         .footer-col ul a:hover {
-            color: #c49b3f;
+            color: var(--accent);
             padding-left: 5px;
         }
 
@@ -863,7 +1013,7 @@
         }
 
         .footer-social a:hover {
-            background: #c49b3f;
+            background: var(--accent);
             transform: translateY(-5px);
         }
 
@@ -886,60 +1036,13 @@
         }
 
         .visitor-badge i {
-            color: #c49b3f;
+            color: var(--accent);
         }
 
         .visitor-count {
-            color: #c49b3f;
+            color: var(--accent);
             font-weight: 600;
             margin-left: 5px;
-        }
-
-        /* ===== BOTÓN VOLVER ARRIBA ===== */
-        .scroll-top {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: #c49b3f;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            text-decoration: none;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            border: 2px solid white;
-        }
-
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: #0a2b4f;
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(196,155,63,0.5);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .scroll-top i {
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-top:hover i {
-            animation: none;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -961,6 +1064,8 @@
             .hero-stats { justify-content: center; }
             .about-grid, .mv-grid, .footer-grid { grid-template-columns: 1fr; }
             .image-caption p { font-size: 1.2rem; }
+            .client-card { flex: 0 0 260px; }
+            .client-image { height: 220px; }
         }
 
         @media (max-width: 768px) {
@@ -971,7 +1076,7 @@
                 left: -100%;
                 width: 80%;
                 height: calc(100vh - 80px);
-                background: #0a2b4f;
+                background: var(--primary);
                 transition: all 0.3s;
                 z-index: 98;
                 padding: 20px;
@@ -984,7 +1089,8 @@
             .hero-stats { flex-direction: column; gap: 20px; }
             .section-title { font-size: 2rem; }
             .logo-img { height: 45px; }
-            .client-card { flex: 0 0 250px; height: 250px; }
+            .client-card { flex: 0 0 240px; }
+            .client-image { height: 200px; }
             .team-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .team-image { height: 200px; }
             .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
@@ -993,6 +1099,12 @@
             .whatsapp-float { bottom: 20px; right: 20px; }
             .scroll-top { bottom: 80px; right: 20px; }
             .footer-bottom { flex-direction: column; text-align: center; }
+            .glass-badge { font-size: 0.75rem; padding: 6px 15px; }
+            .image-caption { padding: 15px 20px; }
+            .image-caption i { font-size: 1.6rem; }
+            .image-caption p { font-size: 0.95rem; }
+            .client-info h4 { font-size: 1rem; }
+            .client-info p { font-size: 0.75rem; }
         }
 
         @media (max-width: 480px) {
@@ -1004,12 +1116,13 @@
             .section-title { font-size: 1.8rem; }
             .services-grid, .team-grid, .contact-grid { grid-template-columns: 1fr; }
             .team-image { height: 250px; }
-            .client-card { flex: 0 0 180px; height: 180px; }
-            .client-overlay h4 { font-size: 0.9rem; }
-            .client-overlay p { font-size: 0.7rem; }
-            .image-caption { padding: 15px; }
-            .image-caption i { font-size: 2rem; }
-            .image-caption p { font-size: 1rem; }
+            .client-card { flex: 0 0 200px; }
+            .client-image { height: 160px; }
+            .client-info { padding: 12px 10px; }
+            .client-info h4 { font-size: 0.9rem; }
+            .image-caption { padding: 12px 15px; }
+            .image-caption i { font-size: 1.4rem; }
+            .image-caption p { font-size: 0.85rem; }
             .logo-img { height: 35px; }
         }
 
@@ -1018,142 +1131,6 @@
             .hero-title { font-size: 4.5rem; }
             .hero-title span { font-size: 5rem; }
         }
-
-/* ===== EFECTO GLASS PARA LA IMAGEN (OPCIÓN 3) ===== */
-.about-image {
-    position: relative;
-}
-
-.image-frame-glass {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.image-frame-glass:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 30px 50px rgba(196,155,63,0.4);
-}
-
-.image-frame-glass img {
-    width: 100%;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.image-frame-glass:hover img {
-    transform: scale(1.08);
-}
-
-/* Overlay dorado que sube desde abajo */
-.glass-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 0;
-    background: linear-gradient(to top, rgba(196,155,63,0.85), rgba(196,155,63,0.3), transparent);
-    transition: height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    pointer-events: none;
-}
-
-.image-frame-glass:hover .glass-overlay {
-    height: 60%;
-}
-
-/* Badge que aparece desde fuera */
-.glass-badge {
-    position: absolute;
-    top: 20px;
-    right: -40px;
-    background: linear-gradient(135deg, #c49b3f, #ffd966);
-    padding: 8px 20px;
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #0a2b4f;
-    box-shadow: 0 5px 15px rgba(196,155,63,0.3);
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: 0;
-    z-index: 3;
-    white-space: nowrap;
-    letter-spacing: 0.5px;
-}
-
-.glass-badge i {
-    font-size: 1rem;
-    color: #0a2b4f;
-}
-
-.image-frame-glass:hover .glass-badge {
-    right: 20px;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Caption debajo de la imagen (ya existente, mantener) */
-.image-caption {
-    background: #0a2b4f;
-    color: white;
-    padding: 18px 25px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border-left: 5px solid #c49b3f;
-    transition: all 0.4s;
-    margin-top: 25px;
-    text-align: center;
-}
-
-.image-caption:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 35px rgba(196,155,63,0.3);
-}
-
-.image-caption i {
-    font-size: 2rem;
-    color: #c49b3f;
-}
-
-.image-caption p {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.4;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .glass-badge {
-        font-size: 0.75rem;
-        padding: 6px 15px;
-        gap: 6px;
-    }
-    
-    .glass-badge i {
-        font-size: 0.8rem;
-    }
-    
-    .image-caption {
-        padding: 15px 20px;
-    }
-    
-    .image-caption i {
-        font-size: 1.6rem;
-    }
-    
-    .image-caption p {
-        font-size: 0.95rem;
-    }
-}
     </style>
 </head>
 <body>
@@ -1229,58 +1206,58 @@
         </div>
     </section>
 
-    <!-- SOBRE NOSOTROS - VERSIÓN MEJORADA CON EFECTO GLASS -->
-<section id="nosotros" class="about">
-    <div class="container">
-        <div class="about-grid">
-            <div class="about-content" data-aos="fade-right">
-                <span class="section-subtitle">¿QUIÉNES SOMOS?</span>
-                <h2 class="section-title">DASACORP</h2>
-                <p class="about-text">
-                    DASACORP es una empresa que brinda servicios de seguridad privada a empresas públicas y privadas, 
-                    entidades financieras y todo tipo de eventos. Nos distinguimos por nuestro compromiso con la 
-                    excelencia, el respeto y la ética profesional.
-                </p>
+    <!-- SOBRE NOSOTROS -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content" data-aos="fade-right">
+                    <span class="section-subtitle">¿QUIÉNES SOMOS?</span>
+                    <h2 class="section-title">DASACORP</h2>
+                    <p class="about-text">
+                        DASACORP es una empresa que brinda servicios de seguridad privada a empresas públicas y privadas, 
+                        entidades financieras y todo tipo de eventos. Nos distinguimos por nuestro compromiso con la 
+                        excelencia, el respeto y la ética profesional.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personal altamente capacitado</span>
+                        </div>
+                        <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tecnología de vanguardia</span>
+                        </div>
+                        <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certificaciones internacionales</span>
+                        </div>
+                        <div class="about-feature" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Atención personalizada</span>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="about-features">
-                    <div class="about-feature" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Personal altamente capacitado</span>
+                <div class="about-image" data-aos="fade-left">
+                    <div class="image-frame-glass gold-frame">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" 
+                             alt="Equipo DASACORP"
+                             loading="lazy">
+                        <div class="glass-overlay"></div>
+                        <div class="glass-badge">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificados</span>
+                        </div>
                     </div>
-                    <div class="about-feature" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Tecnología de vanguardia</span>
+                    <div class="image-caption">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Comprometidos con tu seguridad</p>
                     </div>
-                    <div class="about-feature" data-aos="fade-up" data-aos-delay="300">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Certificaciones internacionales</span>
-                    </div>
-                    <div class="about-feature" data-aos="fade-up" data-aos-delay="400">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Atención personalizada</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="about-image" data-aos="fade-left">
-                <div class="image-frame-glass">
-                    <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" 
-                         alt="Equipo DASACORP"
-                         loading="lazy">
-                    <div class="glass-overlay"></div>
-                    <div class="glass-badge">
-                        <i class="fas fa-certificate"></i>
-                        <span>Certificados</span>
-                    </div>
-                </div>
-                <div class="image-caption">
-                    <i class="fas fa-shield-alt"></i>
-                    <p>Comprometidos con tu seguridad</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- MISIÓN Y VISIÓN -->
     <section class="mission-vision">
@@ -1373,7 +1350,7 @@
         </div>
     </section>
 
-    <!-- CLIENTES -->
+    <!-- CLIENTES - NUEVO DISEÑO CON NOMBRE DEBAJO -->
     <section id="clientes" class="clients">
         <div class="container">
             <div class="section-header" data-aos="fade-down">
@@ -1383,36 +1360,77 @@
             
             <div class="clients-slider-container" data-aos="fade-up">
                 <div class="clients-track">
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Cliente 1" loading="lazy"></div>
-                        <div class="client-overlay"><h4>Guaros</h4><p>Group sac</p></div>
+                    <!-- Cliente 1 -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Guaros" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>Guaros</h4>
+                            <p>Group Sac</p>
+                        </div>
                     </div>
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Cliente 2" loading="lazy"></div>
-                        <div class="client-overlay"><h4>Epropel Selva</h4><p>Venta de implementos de seguridad industrial</p></div>
+                    
+                    <!-- Cliente 2 -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Epropel Selva" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>Epropel Selva</h4>
+                            <p>Venta de implementos de seguridad industrial</p>
+                        </div>
                     </div>
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="Cliente 3" loading="lazy"></div>
-                        <div class="client-overlay"><h4>El amigo alfa</h4></div>
+                    
+                    <!-- Cliente 3 -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="El amigo alfa" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>El amigo alfa</h4>
+                            <p>Tienda de productos</p>
+                        </div>
                     </div>
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Cliente 1" loading="lazy"></div>
-                        <div class="client-overlay"><h4>Guaros</h4><p>Group Sac</p></div>
+                    
+                    <!-- Cliente 4 (repetido para carrusel) -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente1.jpeg" alt="Guaros" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>Guaros</h4>
+                            <p>Group Sac</p>
+                        </div>
                     </div>
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Cliente 2" loading="lazy"></div>
-                        <div class="client-overlay"><h4>Epropel Selva</h4><p>Venta de implementos de seguridad industrial</p></div>
+                    
+                    <!-- Cliente 5 (repetido) -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente2.jpeg" alt="Epropel Selva" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>Epropel Selva</h4>
+                            <p>Venta de implementos de seguridad industrial</p>
+                        </div>
                     </div>
-                    <div class="client-card">
-                        <div class="client-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="Cliente 3" loading="lazy"></div>
-                        <div class="client-overlay"><h4>El amigo Alfa</h4></div>
+                    
+                    <!-- Cliente 6 (repetido) -->
+                    <div class="client-card gold-frame">
+                        <div class="client-image">
+                            <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/cliente3.jpeg" alt="El amigo alfa" loading="lazy">
+                        </div>
+                        <div class="client-info">
+                            <h4>El amigo alfa</h4>
+                            <p>Tienda de productos</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EQUIPO -->
+    <!-- EQUIPO DE TRABAJADORES -->
     <section id="equipo" class="team">
         <div class="container">
             <div class="section-header" data-aos="fade-down">
@@ -1422,21 +1440,36 @@
             </div>
             
             <div class="team-grid">
-                <div class="team-card" data-aos="flip-left" data-aos-delay="100">
-                    <div class="team-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador1.jpeg" alt="Trabajador 1" loading="lazy"></div>
-                    <div class="team-info"><h3>Juan Pérez</h3><p>Jefe de Operaciones</p></div>
+                <div class="team-card gold-frame">
+                    <div class="team-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/80bdc87732c26e38fd8aa8b5c8dbb2078fd5eecc/trabajador1.jpeg" alt="Juan Pérez" loading="lazy">
+                    </div>
+                    <div class="team-info">                                             
+                    </div>
                 </div>
-                <div class="team-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="team-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" alt="Trabajador 2" loading="lazy"></div>
-                    <div class="team-info"><h3>Pepe Lucho</h3><p>Coordinador de Seguridad</p></div>
+                
+                <div class="team-card gold-frame">
+                    <div class="team-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/ceef855e6521dcdd384ebd85deb16ad716687dc5/trabajador2.jpeg" alt="Pepe Lucho" loading="lazy">
+                    </div>
+                    <div class="team-info">                        
+                    </div>
                 </div>
-                <div class="team-card" data-aos="flip-left" data-aos-delay="300">
-                    <div class="team-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/d79d6d9f3a6ba45c2c1d1b0d4c5edcac17a977c3/trabajador3.jpg" alt="Trabajador 3" loading="lazy"></div>
-                    <div class="team-info"><h3>Ahijao</h3><p>Supervisor de Campo</p></div>
+                
+                <div class="team-card gold-frame">
+                    <div class="team-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/d79d6d9f3a6ba45c2c1d1b0d4c5edcac17a977c3/trabajador3.jpg" alt="Ahijao" loading="lazy">
+                    </div>
+                    <div class="team-info">                        
+                    </div>
                 </div>
-                <div class="team-card" data-aos="flip-left" data-aos-delay="400">
-                    <div class="team-image"><img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/bc30791b085b26704dc4034ad360b424c6257eb5/trabajador4.jpeg" alt="Trabajador 4" loading="lazy"></div>
-                    <div class="team-info"><h3>Ana Torres</h3><p>Especialista en Ciberseguridad</p></div>
+                
+                <div class="team-card gold-frame">
+                    <div class="team-image">
+                        <img src="https://raw.githubusercontent.com/jeshu1990/dasacorp-web/bc30791b085b26704dc4034ad360b424c6257eb5/trabajador4.jpeg" alt="Ana Torres" loading="lazy">
+                    </div>
+                    <div class="team-info">                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -1474,7 +1507,6 @@
                 </div>
             </div>
             
-            <!-- MAPA -->
             <div class="map-container" data-aos="fade-up" data-aos-delay="500">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d-76.369298!3d-6.498932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjknNTYuMiJTIDc2wrAyMicxOS41Ilc!5e1!3m2!1ses!2spe!4v1710000000000!5m2!1ses!2spe" 
                         width="100%" 
@@ -1549,90 +1581,103 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        // Inicializar AOS
-        AOS.init({ duration: 1000, once: true, offset: 100 });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar AOS
+            AOS.init({ duration: 1000, once: true, offset: 100 });
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
+            // Header scroll effect
             const header = document.getElementById('header');
-            if (window.scrollY > 100) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // Menú móvil
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
             });
-        }
 
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = menuToggle?.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
+            // Menú móvil
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    const icon = menuToggle?.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
             });
-        });
 
-        // Active link highlight
-        window.addEventListener('scroll', function() {
+            // Active link highlight
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                let current = '';
+                sections.forEach(section => {
+                    if (window.scrollY >= section.offsetTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Botón volver arriba
+            const scrollTop = document.getElementById('scrollTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) scrollTop.classList.add('show');
+                else scrollTop.classList.remove('show');
+            });
+            scrollTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Contador de visitas
+            const counterElement = document.getElementById('visitor-count');
+            if (counterElement) {
+                (async function() {
+                    try {
+                        const response = await fetch('https://api.visitorbadge.io/api/visitors?path=jeshu1990.dasacorp&label=&countColor=%23c49b3f');
+                        const data = await response.json();
+                        if (data && data.count) counterElement.textContent = data.count;
+                    } catch (error) {
+                        let count = localStorage.getItem('dasacorp_visits') || 0;
+                        count = parseInt(count) + 1;
+                        localStorage.setItem('dasacorp_visits', count);
+                        counterElement.textContent = count;
+                    }
+                })();
+            }
+
+            // Lazy loading
+            document.querySelectorAll('img').forEach(img => {
+                if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+            });
+
+            // Secciones visibles
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            let current = '';
-            sections.forEach(section => {
-                if (window.scrollY >= section.offsetTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Botón volver arriba
-        const scrollTop = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) scrollTop.classList.add('show');
-            else scrollTop.classList.remove('show');
-        });
-        scrollTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // CONTADOR DE VISITAS MEJORADO
-        const counterElement = document.getElementById('visitor-count');
-        if (counterElement) {
-            (async function() {
-                try {
-                    const response = await fetch('https://api.visitorbadge.io/api/visitors?path=jeshu1990.dasacorp&label=&countColor=%23c49b3f');
-                    const data = await response.json();
-                    if (data && data.count) counterElement.textContent = data.count;
-                } catch (error) {
-                    console.warn('Contador offline, usando local');
-                    let count = localStorage.getItem('dasacorp_visits') || 0;
-                    count = parseInt(count) + 1;
-                    localStorage.setItem('dasacorp_visits', count);
-                    counterElement.textContent = count;
-                }
-            })();
-        }
-
-        // Lazy loading en imágenes
-        document.querySelectorAll('img').forEach(img => {
-            if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+            function checkVisibility() {
+                sections.forEach(section => {
+                    if (section.getBoundingClientRect().top <= window.innerHeight - 100) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility();
         });
     </script>
 </body>
